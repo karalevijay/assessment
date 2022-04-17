@@ -6,6 +6,7 @@ use DB;
 use Exception;
 use App\Helpers\Utility;
 use App\Models\User;
+use App\Models\AddressDetails;
 
 class ImportDataController {
 
@@ -16,12 +17,16 @@ class ImportDataController {
     public function importData() {
         Try {
             DB::beginTransaction();
-
+            $userDetail = [];
             $userData = config('config.demo_users');
             foreach ($userData as $key => $value) {
-                $userData[$key]['password'] = app('hash')->make($value['password']);
+                $userDetail = $value;
+                $userDetail['user']['password'] = app('hash')->make($value['user']['password']);
+                User::insert($userDetail['user']);
+                $userDetail['address']['user_id'] = DB::getPdo()->lastInsertId();
+                AddressDetails::insert($userDetail['address']);
             }
-            User::insert($userData);
+
 
             DB::commit();
         } catch (Exception $ex) {

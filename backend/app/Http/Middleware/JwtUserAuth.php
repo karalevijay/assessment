@@ -42,11 +42,11 @@ class JwtUserAuth {
      */
     public function handle($request, Closure $next, $guard = null) {
         try {
-
             $urlArr = explode('/', $request->url());
-            if (in_array('login', $urlArr)) {
+            if (in_array('login', $urlArr) || in_array('register', $urlArr)) {
                 return $next($request);
             }
+            Utility::log('ppppp',config('user_id'),'----',$request->all());
             $this->jwt->parser()->setRequest($request);
             if (!$user = $this->jwt->parseToken()->authenticate()) {
                 return response(Utility::genErrResp('token_expired'));

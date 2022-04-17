@@ -8,7 +8,6 @@ use App\Http\Controllers\ImportDataController;
 class DatabaseSeeder extends Seeder {
 
     public function run() {
-        // $this->call('UsersTableSeeder');
         $obj = new ImportDataController();
         $obj->importData();
     }

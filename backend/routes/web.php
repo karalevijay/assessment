@@ -20,8 +20,12 @@ $router->post('/login', [
     'as' => 'login', 'uses' => 'AuthController@login'
 ]);
 
-$router->post('/loanStatusCheck', [
-    'as' => 'loanStatusCheck', 'uses' => 'LoanProcessController@loanStatusCheck'
+$router->post('/register', [
+    'as' => 'register', 'uses' => 'AuthController@register'
+]);
+
+$router->post('/loadAllUsers', [
+    'as' => 'loadAllUsers', 'uses' => 'CommonController@loadAllUsers'
 ]);
 
 $router->post('/loanStatusUpdate', [

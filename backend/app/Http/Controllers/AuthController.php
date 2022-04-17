@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\AddressDetails;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\JWTAuth;
 use App\Helpers\Utility;
+use Validator;
 use DB;
 use Log;
 
@@ -25,28 +27,22 @@ class AuthController extends Controller {
     public function register(Request $request, $data = []) {
         try {
             DB::beginTransaction();
-            if (!count($data)) {
-                $validator = Validator::make($request->all(), [
-                            'fname' => 'required|min:3|max:50',
-                            'lname' => 'required|min:3|max:50',
-                            'email' => 'required|email|max:100',
-                            'password' => 'required',
-                            'mobile' => 'required|min:10|max:10',
-                ]);
-                if ($validator->fails()) {
-                    $errors = $validator->errors();
-                    DB::rollBack();
-                    return Utility::genErrResp("validator_error", $errors);
-                }
-            }
-
-            if (!count($data)) {
+            
+            $validator = Validator::make($request->all(), [
+                        'fname' => 'required|min:3|max:50',
+                        'lname' => 'required|min:3|max:50',
+                        'email' => 'required|email|max:100',
+                        'password' => 'required',
+                        'mobile' => 'required|min:10|max:10',
+                        'address_one' => 'required',
+            ]);
+            if ($validator->fails()) {
+                $errors = $validator->errors();
                 DB::rollBack();
-                return Utility::genErrResp("user_registration_not_allowed");
+                return Utility::genErrResp("validator_error", $errors);
             }
-            if (!count($data))
-                $data = $request->all();
-
+            
+            $data = $request->all();
             $data['email'] = strtolower($data['email']);
             $exist = User::where('email', $data['email'])
                             ->where('status', 'A')->count();
@@ -68,8 +64,16 @@ class AuthController extends Controller {
             $user->lname = $data['lname'];
             $user->status = 'A';
             $user->save();
+
+            $address = new AddressDetails();
+            $address->address_one = $data['address_one'];
+            $address->city = $data['city'];
+            $address->country = 'India';
+            $address->user_id = $user->id;
+            $address->post_title = $data['post_title'];
+            $address->save();
             DB::commit();
-            return Utility::genSuccessResp('register_success', $user, false);
+            return Utility::genSuccessResp('register_success');
         } catch (Exception $ex) {
             DB::rollBack();
             Utility::logException($ex);
@@ -114,15 +118,6 @@ class AuthController extends Controller {
             Utility::logException($ex);
             return Utility::genErrResp("internal_err");
         }
-    }
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me() {
-        return response()->json(auth()->user());
     }
 
     /**

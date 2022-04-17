@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/aspire-fintech/backend/app/Http/Controllers/AuthController.php</file>
-            <file>file:/var/www/html/aspire-fintech/backend/storage/logs/lumen-2022-02-21.log</file>
-            <file>file:/var/www/html/aspire-fintech/backend/bootstrap/app.php</file>
-            <file>file:/var/www/html/aspire-fintech/backend/app/Http/Controllers/Constants.php</file>
-            <file>file:/var/www/html/aspire-fintech/backend/.env</file>
+            <file>file:/var/www/html/packt/backend/app/Http/Controllers/AuthController.php</file>
+            <file>file:/var/www/html/packt/backend/storage/logs/lumen-2022-04-16.log</file>
+            <file>file:/var/www/html/packt/backend/routes/web.php</file>
+            <file>file:/var/www/html/packt/backend/config/config.php</file>
+            <file>file:/var/www/html/packt/backend/app/Http/Middleware/JwtUserAuth.php</file>
         </group>
     </open-files>
 </project-private>

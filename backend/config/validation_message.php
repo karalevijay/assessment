@@ -7,15 +7,15 @@
  */
 
 return [
-    'listSuccess' => 'Requested data listed successfully',
-    'login_success' => 'You are successfully logged in',
-    'token_expired' => 'Your session is expired',
-    'token_invalid' => 'Invalid session',
-    'token_absent' => 'Please provide token',
-    'logout_success' => 'Logout Success',
-    'unauthorized' => 'Unauthorized access',
-    'invalid_user' => 'Invalid user',
-    'loan_status_updated' => 'Loan status updated successfully',
-    'loan_emi_paid'=> 'Loan EMI Paid Successfully',
-    'loan_request_submitted_successfully'=> 'Loan request submitted successfully'
+    'listSuccess'                       => 'Requested data listed successfully',
+    'login_success'                     => 'You are successfully logged in',
+    'token_expired'                     => 'Your session is expired',
+    'token_invalid'                     => 'Invalid session',
+    'token_absent'                      => 'Please provide token',
+    'logout_success'                    => 'Logout Success',
+    'unauthorized'                      => 'Unauthorized access',
+    'invalid_user'                      => 'Invalid user',
+    'user_already_exist'                => 'User already exists with same mail ID',
+    'validator_error'                   => 'Field validation error',
+    'user_name_or_password_not_match'   => 'User name or Password not match',
 ];

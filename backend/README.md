@@ -25,7 +25,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 
 ## How to set project
-clone repo from "git@github.com:karalevijay/aspire.git" url
+clone repo from "git@github.com:karalevijay/packt.git" url
 after clone
 1. composer install
     after composer install your project application will set completely on local we are ready to go
